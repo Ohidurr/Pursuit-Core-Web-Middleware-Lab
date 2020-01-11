@@ -12,11 +12,17 @@ const app = express()
      let animal = req.params.id 
     
          if(!animalArray.includes(animal)){
-             console.log("false");
+             res.json({
+                 status: "failed",
+                 message: "false"
+             })
              
          } else{
-             console.log("true");
-             
+            res.json({
+                status: "success",
+                message: "true"
+            })
+
          }
      
     next()
