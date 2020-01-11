@@ -8,7 +8,8 @@ const app = express()
  app.use(cors())
  const animalArray = ['Lion','Zebra','Monkey','dinosaur','fish']
  const range = []
- const randomNum = () => {
+ const randomNum = (req, res, next) => {
+     console.log(Math.floor(Math.random(2)*animalArray.length))
      next()
      // res.json(randomNum())
     }
@@ -32,20 +33,20 @@ const app = express()
         
         next()
     }
-    const generateSpread = (req,res,next) => {
-        res.json
-        console.log(Math.floor(Math.random(2)*animalArray.length))
-    next()
-}
+//     const generateSpread = (req,res,next) => {
+        
+//         next()
+// }
 
-
+app.use("/random", randomNum)
  app.get('/animal/:id',isAnimal,(req,res) => {
      res.json({
         animalArray
      })
  })
 
- app.get('/random'), generateSpread,(req,res) => {
+ app.get('/random'), randomNum,(req,res) => {
+
      res.json("sucess: " + randomNum)
      
  }
