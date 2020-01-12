@@ -6,12 +6,18 @@ const cors = require('cors')
  
 const app = express()
  app.use(cors())
- const animalArray = ['Lion','Zebra','Monkey','dinosaur','fish']
- const range = []
- const randomNum = (req, res, next) => {
-     console.log(Math.floor(Math.random(2)*animalArray.length))
+ 
+ const animalArray = ['lion','zebra','monkey','dinosaur','fish','cat','lizard']
+
+ let randomNum
+ let arr =[]
+ const generateSpread = (req, res, next) => {
+    let query = req.query
+    let ceil = query.ceil
+    let floor = query.floor
+    randomNum = (Math.floor(Math.random()*(ceil-floor)+(floor)))
      next()
-     // res.json(randomNum())
+     
     }
     
     const isAnimal = (req, res, next) => {
@@ -33,21 +39,22 @@ const app = express()
         
         next()
     }
-//     const generateSpread = (req,res,next) => {
-        
-//         next()
-// }
 
-app.use("/random", randomNum)
  app.get('/animal/:id',isAnimal,(req,res) => {
      res.json({
         animalArray
      })
  })
 
- app.get('/random'), randomNum,(req,res) => {
+ app.get('/random'), generateSpread,(req,res) => {
+    let query = req.query
+    let ceil = parseInt(query.ceil)
+    let floor = parseInt(query.floor)
+    console.log(query)
 
-     res.json("sucess: " + randomNum)
+     res.json({status: "Success",
+            range: [floor,ceil],
+            random_num: randomNum })
      
  }
 
