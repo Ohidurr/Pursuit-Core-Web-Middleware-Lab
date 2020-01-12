@@ -46,7 +46,7 @@ const app = express()
      })
  })
 
- app.get('/random'), generateSpread,(req,res) => {
+ app.get('/random', generateSpread,(req,res) => {
     let query = req.query
     let ceil = parseInt(query.ceil)
     let floor = parseInt(query.floor)
@@ -56,7 +56,7 @@ const app = express()
             range: [floor,ceil],
             random_num: randomNum })
      
- }
+ })
 
 app.listen(port, () => {
     console.log("you are on port: ", port);
