@@ -14,8 +14,19 @@ document.addEventListener("DOMContentLoaded",() => {
         li.innerText = data.status
       //let h1 = document.querySelector('h1')
       ul.appendChild(li)
-      
-        
-    })
+       })
+//question 2:
+let random = document.querySelector("button")
+random.addEventListener('click', (e) => {
+    e.preventDefault()
+    let input1 = document.querySelector("#num1").value
+    let input2 = document.querySelector("#num2").value
+    res = await axios.get('http://localhost:3000/random')
+    let data = res.data
+    debugger
+
+})
+
+
 
 })
